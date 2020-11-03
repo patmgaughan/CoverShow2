@@ -1,0 +1,76 @@
+{
+	"setlist": 
+	[
+
+		{
+			"title": "NASA",
+			"artist": "Ariana Grande",
+			"genre": ["Pop"],
+			"year": 2019
+		},
+
+		{
+			"title": "Alien Boy",
+			"artist": "Oliver Tree",
+			"genre": ["Alternative", "Indie"],
+			"year": 2019
+		},
+
+		{
+			"title": "Drops of Jupiter",
+			"artist": "Train",
+			"genre": ["Pop", "Rock", "Pop Rock"],
+			"year": 2009
+		},
+
+		{
+			"title": "Space Cowboy",
+			"artist": "Kacey Musgraves",
+			"genre": ["Country"],
+			"year": 2018
+		},
+
+		{
+			"title": "Moon River",
+			"artist": "Frank Ocean",
+			"genre": ["Pop"],
+			"year": 2018
+		},
+
+		{
+			"title": "Blank Space",
+			"artist": "Taylor Swift",
+			"genre": ["Pop"],
+			"year": 2014
+		},
+
+		{
+			"title": "E.T.",
+			"artist": "Katy Perry",
+			"genre": ["Pop Rock"],
+			"year": 2010
+		},
+
+		{
+			"title": "Fly Me To The Moon",
+			"artist": "Frank Sinatra",
+			"genre": ["Jazz"],
+			"year": 1964
+		},
+
+		{
+			"title": "Dancing in the Moonlight",
+			"artist": "King Harvest",
+			"genre": ["Rock"],
+			"year": 1973
+		},
+
+		{
+			"title": "All The Stars",
+			"artist": "Kendrick Lamar",
+			"genre": ["Contemporary RnB", "Hip-Hip", "Rap"],
+			"year": 2018
+		}
+
+	]
+}
