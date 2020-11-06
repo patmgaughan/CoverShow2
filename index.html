@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cover Show Pet Object</title>
+	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="CoverShowJson.css">
+	
+
+</head>
+
+<body>
+	<script language="javascript">
+
+		//Song Object
+		function Song(songTitle, artist, genre, year) {
+			this.songTitle = songTitle;
+  			this.artist = artist;
+  			this.genre = genre;
+  			this.year = year;
+  			this.display = function() {
+    			return "<li><h2>" + this.songTitle + "</h2> Artist: " + 
+    			        this.artist + "<br> Genre: " + this.genre + 
+    			         "<br> Released " + this.year + "</li>";
+  			}
+		}
+
+		//Global Variables
+		var songs = new Array();
+		var allGenres = new Array();
+
+
+	//Read from JSON & Write Page
+	$.get( "https://patmgaughan.github.io/CoverShow2/CoverShow.json", 
+		  function( data ) {
+
+		  	//dataP = JSON.parse(data);
+		  	dataS = JSON.stringify(data);
+		  	serialized = document.getElementById("serialized");
+		  	serialized.innerHTML = dataS;
+
+			for(i in data.setlist){
+
+				var song, songName, artist, genre, year;
+				genre = new Array();
+
+				songName = data.setlist[i].title;
+				artist = data.setlist[i].artist;
+
+				for(pos = 0; pos < data.setlist[i].genre.length; pos++){
+					genreToPush = data.setlist[i].genre[pos];
+					//genreToPush = dataP.setlist[i].genre[pos];
+					genre.push(genreToPush);
+					if(!allGenres.includes(genreToPush)){
+						allGenres.push(genreToPush);
+					}
+				}
+
+				year = data.setlist[i].year;
+
+
+				//songName = dataP.setlist[i].title;
+				//artist = dataP.setlist[i].artist;
+				//year = dataP.setlist[i].year;
+
+				list = document.getElementById("setlist");
+				song = new Song(songName, artist, genre, year);
+				songs.push(song);
+
+			}
+
+			setlist = document.getElementById("setlist");
+			for(i = 0; i < songs.length; i++){
+				setlist.innerHTML += songs[i].display();
+			}
+
+			genreSelect = document.getElementById("genreSelect");
+
+
+			for(i = 0; i < allGenres.length; i++){
+				genreSelect.innerHTML += "<option>" 
+				                      + allGenres[i] 
+				                      + "</option>";
+			}
+			
+
+	})
+
+	//Filter Genres
+	function showGenre(genre) {
+		setlist = document.getElementById("setlist");
+		setlist.innerHTML = "";
+		for(i = 0; i < songs.length; i++){
+			if(songs[i].genre.includes(genre) || genre == "All"){
+				setlist.innerHTML += songs[i].display();
+			}
+		}
+	}
+
+
+	window.onload = function() {
+
+		btn1 = document.getElementById("btn1");
+		changeGenre = document.getElementById("genreSelect");
+
+		btn1.onclick = function() {
+			showGenre(changeGenre.value);
+		}
+
+	}
+
+	</script>
+
+	<header>
+		<div id="serialized"></div>
+	</header>
+
+	<form>
+		<select name="genreSelect" id="genreSelect" size='1'>
+			<option>All</option>
+		</select>
+		<input type="button" id="btn1" value="Filter">
+	</form>
+
+
+	</ul>
+
+	<ul id="setlist">
+
+	</ul>
+
+
+
+</body>
+</html>
